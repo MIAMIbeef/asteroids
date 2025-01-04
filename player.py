@@ -42,3 +42,6 @@ class Player(CircleShape):
         self.position += forward * PLAYER_SPEED * dt
     
 
+
+
+
