@@ -4,6 +4,7 @@ from circleshape import *
 from player import *
 from asteroid import *
 from asteroidfield import *
+import sys
 
 def main():
     pygame.init()
@@ -43,7 +44,11 @@ def main():
         for obj in updatable:
             obj.update(dt)
         for obj in drawable:
-            obj.draw(screen)     
+            obj.draw(screen)      
+        for obj in asteroids:
+            if obj.collision(player):
+                sys.exit("Game Over!")
+        
         pygame.display.flip()
         tick = clock.tick(60)
         dt = tick/1000
