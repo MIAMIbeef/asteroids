@@ -32,7 +32,7 @@ def main():
     Player.containers = (updatable, drawable)
     AsteroidField.containers = updatable
     Asteroid.containers = (asteroids, updatable, drawable)
-    Shot.containers = (updatable, drawable)
+    Shot.containers = (shots, updatable, drawable)
 
     player = Player((SCREEN_WIDTH /2), (SCREEN_HEIGHT / 2))
     ast_field = AsteroidField()
@@ -47,8 +47,11 @@ def main():
             obj.update(dt)
         for obj in drawable:
             obj.draw(screen)      
-        for obj in asteroids:
-            if obj.collision(player):
+        for asteroid in asteroids:
+            for shot in shots:
+                if asteroid.collision(shot):
+                    asteroid.split()
+            if asteroid.collision(player):
                 sys.exit("Game Over!")
         
         pygame.display.flip()
