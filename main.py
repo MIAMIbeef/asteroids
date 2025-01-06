@@ -54,6 +54,7 @@ def main():
         pygame.display.flip()
         tick = clock.tick(60)
         dt = tick/1000
+        player.timer -= dt
 
 if __name__ == "__main__":
     main()
